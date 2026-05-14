@@ -84,55 +84,8 @@ context.createProducer().send(topic, message);
 
 ### Nao basta mandar `additionalID` apenas dentro do JSON do payload, porque o broker nao interpreta o conteudo interno do JSON para esse filtro.
 
-## Como demonstrar funcionando
 
-Aplicar a configuracao do broker:
-
-```shell
-oc apply -f broker-filter-test.yaml -n amq
-```
-
-Enviar mensagem com `additionalID`:
-
-```shell
-curl http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/send/with-property
-```
-
-Consumir da fila:
-
-```shell
-curl http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/consume
-```
-
-Resultado esperado:
-
-```text
-Mensagem COM additionalID
-```
-
-## Como demonstrar o bloqueio do filtro
-
-Enviar mensagem sem `additionalID`:
-
-```shell
-curl http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/send/without-property
-```
-
-Tentar consumir da fila:
-
-```shell
-curl 'http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/consume?timeout=1000'
-```
-
-Resultado esperado:
-
-```text
-Nenhuma mensagem recebida
-```
-
-## Como demonstrar max-delivery-attempts=-1
-
-Foi criada uma fila independente para este teste, sem alterar o topico/fila usados no teste de `additionalID`:
+# max-delivery-attempts=-1
 
 ```yaml
 - addressConfigurations.queue-max-delivery-attempts-infinite.routingTypes=ANYCAST
