@@ -1,3 +1,8 @@
+# RH AMQ Broker - Routing, Filtering e Message Redelivery
+
+- [Filtro por additionalID](#amq-broker---filtro-por-additionalid)
+- [max-delivery-attempts=-1](#max-delivery-attempts-1)
+
 # AMQ Broker - filtro por additionalID
 
 O objetivo foi fazer a mensagem publicada no topico `topic-pix-transaction-changed` cair na fila `queue-credito-transactionchanged` somente quando possuir a property JMS `additionalID`.
