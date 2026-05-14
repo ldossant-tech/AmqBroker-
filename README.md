@@ -128,3 +128,46 @@ Consumir com commit para remover a mensagem da fila:
 ```shell
 curl http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/max-delivery/consume
 ```
+
+# Referências Oficiais
+
+## O que é divert e seus recursos?
+
+Red Hat AMQ Broker 7.13 - Diverting and Splitting Message Flows
+
+https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html/configuring_amq_broker/diverting-messages-configuring
+
+---
+
+## Filtros
+
+Red Hat AMQ Broker 7.13 - Filtering Messages
+
+https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html/configuring_amq_broker/assembly-br-filtering-messages_configuring
+
+---
+
+## Filtro no body apenas via XPath/XML
+
+O filtro no body é suportado apenas utilizando XPath em mensagens XML textuais. Não se aplica a payload JSON.
+
+Red Hat AMQ Broker 7.13 - Filtering XML Messages
+
+https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html/configuring_amq_broker/assembly-br-filtering-messages_configuring#con-br-filtering-xml-messages_configuring
+
+---
+
+## maxDeliveryAttempts / DLQ
+
+Red Hat AMQ Broker 7.13 - Moving Undelivered Messages to a Dead Letter Address
+
+https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html-single/configuring_amq_broker/index#assembly-br-handling-undelivered-messages_configuring
+
+---
+
+## OpenShift / brokerProperties
+
+Red Hat AMQ Broker 7.13 - Configuring Addresses and Queues by Using brokerProperties
+
+https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html/deploying_amq_broker_on_openshift/assembly-br-configuring-operator-based-deployments_broker-ocp
+
