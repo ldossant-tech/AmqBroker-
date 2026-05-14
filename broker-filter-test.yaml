@@ -1,0 +1,46 @@
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-filter-test
+  namespace: amq
+spec:
+  deploymentPlan:
+    size: 1
+    persistenceEnabled: false
+    requireLogin: false
+    managementRBACEnabled: false
+    journalType: nio
+    messageMigration: false
+
+  console:
+    expose: true
+
+  acceptors:
+    - name: amqp
+      protocols: amqp
+      port: 5672
+      expose: false
+    - name: core
+      protocols: core
+      port: 61616
+      expose: false
+
+  brokerProperties:
+
+    # filter string additionalId is not null
+    - addressConfigurations.topic-pix-transaction-changed.routingTypes=MULTICAST
+    - addressConfigurations.queue-credito-transactionchanged.routingTypes=ANYCAST
+    - addressConfigurations.queue-credito-transactionchanged.queueConfigs.queue-credito-transactionchanged.address=queue-credito-transactionchanged
+    - addressConfigurations.queue-credito-transactionchanged.queueConfigs.queue-credito-transactionchanged.routingType=ANYCAST
+    - divertConfigurations.pix-transaction-changed-to-credito.address=topic-pix-transaction-changed
+    - divertConfigurations.pix-transaction-changed-to-credito.forwardingAddress=queue-credito-transactionchanged
+    - divertConfigurations.pix-transaction-changed-to-credito.routingType=ANYCAST
+    - divertConfigurations.pix-transaction-changed-to-credito.exclusive=false
+    # Selector evaluated on JMS message properties/headers, not inside the JSON payload.
+    - divertConfigurations.pix-transaction-changed-to-credito.filterString=additionalID IS NOT NULL
+
+    # Independent queue used only to demonstrate infinite redelivery attempts.
+    - addressConfigurations.queue-max-delivery-attempts-infinite.routingTypes=ANYCAST
+    - addressConfigurations.queue-max-delivery-attempts-infinite.queueConfigs.queue-max-delivery-attempts-infinite.address=queue-max-delivery-attempts-infinite
+    - addressConfigurations.queue-max-delivery-attempts-infinite.queueConfigs.queue-max-delivery-attempts-infinite.routingType=ANYCAST
+    - addressSettings.queue-max-delivery-attempts-infinite.maxDeliveryAttempts=-1
