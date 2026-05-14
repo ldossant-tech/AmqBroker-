@@ -82,7 +82,7 @@ message.setStringProperty("additionalID", "123");
 context.createProducer().send(topic, message);
 ```
 
-Nao basta mandar `additionalID` apenas dentro do JSON do payload, porque o broker nao interpreta o conteudo interno do JSON para esse filtro.
+### Nao basta mandar `additionalID` apenas dentro do JSON do payload, porque o broker nao interpreta o conteudo interno do JSON para esse filtro.
 
 ## Como demonstrar funcionando
 
