@@ -163,11 +163,7 @@ A utilização de DLQ (`Dead Letter Queue`) permite isolar mensagens problemáti
 
 # Referências Oficiais
 
-## O que é divert e seus recursos?
 
-Red Hat AMQ Broker 7.13 - Diverting and Splitting Message Flows
-
-https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html/configuring_amq_broker/diverting-messages-configuring
 
 ---
 
