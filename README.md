@@ -132,6 +132,35 @@ Consumir com commit para remover a mensagem da fila:
 curl http://amq-filter-demo-amq.apps.ldossant.vmware.tamlab.rdu2.redhat.com/max-delivery/consume
 ```
 
+## Pontos de atenção sobre `max-delivery-attempts=-1`
+
+A configuração `max-delivery-attempts=-1` permite retries infinitos da mensagem. Apesar de útil em cenários críticos, existem alguns impactos operacionais importantes:
+
+* **Loop infinito de redelivery**
+  A mensagem continuará sendo reenviada enquanto o consumidor realizar rollback.
+
+* **Poison Message (mensagem problemática)**
+  Uma mensagem inválida pode monopolizar o consumo e causar a impressão de fila travada.
+
+* **Uso excessivo de CPU**
+  Principalmente quando utilizado com:
+
+```yaml
+redeliveryDelay: 0
+```
+
+Nesse cenário, os retries acontecem imediatamente. Uma mitigação comum é utilizar `redeliveryDelay`.
+
+* **Explosão de logs**
+  Falhas contínuas podem gerar grande volume de logs repetitivos e dificultar troubleshooting.
+
+---
+
+## Importância da DLQ
+
+A utilização de DLQ (`Dead Letter Queue`) permite isolar mensagens problemáticas após determinada quantidade de tentativas, evitando que erros permanentes travem o fluxo principal da fila.
+
+
 # Referências Oficiais
 
 ## O que é divert e seus recursos?
