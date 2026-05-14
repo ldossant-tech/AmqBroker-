@@ -169,6 +169,7 @@ A utilização de DLQ (`Dead Letter Queue`) permite isolar mensagens problemáti
 Red Hat AMQ Broker 7.13 - Configuring message diverts
 
 https://docs.redhat.com/en/documentation/red_hat_amq_broker/7.13/html-single/configuring_amq_broker/index#proc_br-configuring-message-diverts_configuring
+
 ---
 
 ## Filtros
